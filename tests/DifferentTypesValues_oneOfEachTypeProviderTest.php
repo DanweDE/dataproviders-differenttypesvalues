@@ -3,7 +3,6 @@ namespace Danwe\DataProviders\Tests;
 
 use Danwe\DataProviders\DifferentTypesValues;
 use Danwe\DataProviders\DifferentTypesValuesUnknownTypeException;
-use LogicException;
 
 /**
  * @covers Danwe\DataProviders\DifferentTypesValues

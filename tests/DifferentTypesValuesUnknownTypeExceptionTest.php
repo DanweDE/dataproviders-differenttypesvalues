@@ -2,6 +2,7 @@
 namespace Danwe\DataProviders\Tests;
 
 use Danwe\DataProviders\DifferentTypesValuesUnknownTypeException;
+use InvalidArgumentException;
 
 /**
  * @covers Danwe\DataProviders\DifferentTypesValuesUnknownTypeException
@@ -21,6 +22,15 @@ class DifferentTypesValuesUnknownTypeExceptionTest extends \PHPUnit_Framework_Te
 			'Danwe\DataProviders\DifferentTypesValuesUnknownTypeException',
 			new DifferentTypesValuesUnknownTypeException( $unknownType )
 		);
+	}
+
+	/**
+	 * @expectedException InvalidArgumentException
+	 *
+	 * @dataProvider Danwe\DataProviders\DifferentTypesValues::oneOfEachTypeProvider
+	 */
+	public function testConstructionWithNonStringValues( $value ) {
+		new DifferentTypesValuesUnknownTypeException( $value );
 	}
 
 	/**
