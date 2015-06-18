@@ -4,7 +4,13 @@ namespace Danwe\DataProviders;
 use LogicException;
 
 /**
- * Provides a data provider returning different type's values.
+ * Provides a data provider returning different type's values. Covers values of all of PHP's
+ * built-in types documented on http://php.net/manual/en/function.gettype.php except for the
+ * "resource" type and for "unknown type".
+ *
+ * NOTE: "resource" got excluded from this because creating a resource might fail depending on the
+ *  PHP environment. It could also be considered a rather unconventional type not necessary for most
+ *  test cases so we leave it alone for now.
  *
  * @since 1.0.0
  * @author Daniel A. R. Werner
@@ -12,9 +18,9 @@ use LogicException;
 class DifferentTypesValues {
 
 	/**
-	 * Returns a value of some type per case. Will analyse the name of the test using the provider.
-	 * If the test's name ends with "WithNon...Values" where "..." is the name of a type, e.g. "String",
-	 * "Null" or "Object", then no case for that type will be returned.
+	 * Provides a value of some type per case. Will analyse the name of the test using the provider.
+	 * If the test's name ends with "WithNon...Values" where "..." is the name of a type, e.g.
+	 * "String", "Null" or "Object", then no case for that type will be returned.
 	 *
 	 * @since 1.0.0
 	 *
