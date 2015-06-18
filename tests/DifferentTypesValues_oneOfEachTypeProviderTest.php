@@ -46,10 +46,10 @@ class DifferentTypesValues_oneOfEachTypeProviderTest extends \PHPUnit_Framework_
 	 * @dataProvider functionNamesAndExcludedTypesProvider
 	 */
 	public function testReturnsOneOfEachIncludedType( $functionName, array $excludedTypes ) {
-		$types = [
+		$types = array(
 			'boolean', 'integer', 'double', 'string', 'array', 'object', 'NULL'
-		];
-		$coveredTypes = [];
+		);
+		$coveredTypes = array();
 
 		$cases = DifferentTypesValues::oneOfEachTypeProvider( $functionName );
 
