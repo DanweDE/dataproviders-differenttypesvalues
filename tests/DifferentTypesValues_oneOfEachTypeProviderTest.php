@@ -102,10 +102,10 @@ class DifferentTypesValues_oneOfEachTypeProviderTest extends \PHPUnit_Framework_
 	 */
 	public static function functionNamesProvider() {
 		$data = array_map( function( $value ) {
-			return [ $value[ 0 ] ];
+			return array( $value[ 0 ] );
 		}, static::functionNamesAndExcludedTypesProvider() );
 
-		$data[] = [ null ];
+		$data[] = array( null );
 
 		return $data;
 	}
