@@ -22,6 +22,10 @@ class DifferentTypesValues {
 	 * If the test's name ends with "WithNon...Values" where "..." is the name of a type, e.g.
 	 * "String", "Null" or "Object", then no case for that type will be returned.
 	 *
+	 * Instead of a CamelCase suffix, a "_" based function name will be understood as well, allowing
+	 * suffixes following the pattern "with_non_..._values". Each word's first letter can be either
+	 * upper or lower case. "..." can also be all upper case.
+	 *
 	 * @since 1.0.0
 	 *
 	 * @param string $testName
@@ -43,8 +47,13 @@ class DifferentTypesValues {
 			return $cases;
 		}
 
+		$_W = self::regExUcOr_( 'W' );
+		$_N = self::regExUcOr_( 'N' );
+		$_V = self::regExUcOr_( 'V' );
+		$_AtoZ = self::regExUcOr_( 'A-Z' );
+
 		preg_match(
-			'/^.+(?:W|_[Ww])ith(?:N|_[Nn])on((?:[A-Z]|_[a-zA-Z])[a-zA-Z]+)(?:V|_[Vv])alues$/',
+			"/^.+{$_W}ith{$_N}on({$_AtoZ}[a-zA-Z]+){$_V}alues$/",
 			$testName,
 			$matches
 		);
@@ -65,5 +74,11 @@ class DifferentTypesValues {
 		}
 
 		return $cases;
+	}
+
+	private static function regExUcOr_( $letter ) {
+		$lcLetter = strtolower( $letter );
+		$ucLetter = strtoupper( $letter );
+		return "(?:_?[$ucLetter]|_[{$lcLetter}])";
 	}
 }
