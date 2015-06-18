@@ -1,8 +1,8 @@
 {
 	"name": "danwe/dataproviders-differenttypesvalues",
-	"version": "1.0.0 alpha",
+	"version": "1.0.0",
 	"type": "library",
-	"description": "Helper class offering functionality to define setter and getter class methods with a minimum of expressive code.",
+	"description": "PhpUnit compatible data provider providing one value of each of PHP's built-in types per test case. Allows to exclude types based on the name of the test using the data provider.",
 	"keywords": [
 		"data provider",
 		"values",
@@ -10,7 +10,7 @@
 		"test",
 		"helper"
 	],
-	"homepage": "https://github.com/DanweDE/php-dataproviders-differenttypesvalues",
+	"homepage": "https://github.com/DanweDE/php-DataProviders-DifferentTypesValues",
 	"license": "MIT License",
 	"authors": [
 		{
