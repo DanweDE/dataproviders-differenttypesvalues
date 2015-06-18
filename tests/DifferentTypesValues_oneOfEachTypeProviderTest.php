@@ -2,8 +2,15 @@
 namespace Danwe\DataProviders\Tests;
 
 use Danwe\DataProviders\DifferentTypesValues;
-use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
+/**
+ * @covers Danwe\DataProviders\DifferentTypesValues
+ *
+ * @since 1.0.0
+ *
+ * @licence MIT License
+ * @author Daniel A. R. Werner
+ */
 class DifferentTypesValues_oneOfEachTypeProviderTest extends \PHPUnit_Framework_TestCase {
 
 	/**
