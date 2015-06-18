@@ -69,7 +69,7 @@ class DifferentTypesValues {
 			if( array_key_exists( $typeString, $cases ) ) {
 				unset( $cases[ $typeString ] );
 			} else {
-				throw new LogicException( __FUNCTION__ . " does not know of type \"$typeString\"");
+				throw new DifferentTypesValuesUnknownTypeException( $typeString );
 			}
 		}
 

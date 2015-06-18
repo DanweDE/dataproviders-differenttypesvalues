@@ -2,6 +2,8 @@
 namespace Danwe\DataProviders\Tests;
 
 use Danwe\DataProviders\DifferentTypesValues;
+use Danwe\DataProviders\DifferentTypesValuesUnknownTypeException;
+use LogicException;
 
 /**
  * @covers Danwe\DataProviders\DifferentTypesValues
@@ -21,6 +23,20 @@ class DifferentTypesValues_oneOfEachTypeProviderTest extends \PHPUnit_Framework_
 
 		$this->assertInternalType( 'array', $cases );
 		$this->assertGreaterThan( 0, count( $cases ) );
+	}
+
+	/**
+	 * @dataProvider functionNamesWithUnknownTypeProvider
+	 */
+	public function testThrowsExceptionOnFunctionNameWithUnknownType( $functionName, $unknownType ) {
+		try {
+			DifferentTypesValues::oneOfEachTypeProvider( $functionName );
+		} catch( DifferentTypesValuesUnknownTypeException $e ) {
+			$this->assertEquals( $unknownType, $e->getUnknownType() );
+			return;
+		}
+		$this->assertTrue( 'false', "using function name $functionName triggers exception " .
+			"DifferentTypesValuesUnknownTypeException with unknown type \"$unknownType\"" );
 	}
 
 	public function testDoubleAndFloatAreSynonyms() {
@@ -101,6 +117,14 @@ class DifferentTypesValues_oneOfEachTypeProviderTest extends \PHPUnit_Framework_
 			array( 'testWithNonObjectValues', array( 'object' ) ),
 			array( 'testWithNonNullValues', array( 'NULL' ) ),
 			array( 'testWithNonNULLValues', array( 'NULL' ) ),
+		);
+	}
+
+	public static function functionNamesWithUnknownTypeProvider() {
+		return array(
+			array( 'testWithNonFooValues', 'foo' ),
+			array( 'testWithNonXXXValues', 'xxx' ),
+			array( 'test_with_non_someunknowntype_values', 'someunknowntype' ),
 		);
 	}
 
